@@ -1,0 +1,39 @@
+@startuml
+
+actor Secretaria
+actor Dentista
+actor Paciente
+actor Sistema
+
+usecase "efetuar login" as UC1
+usecase "Visualizar agenda unificada" as UC2
+usecase "Visualizar agenda individual" as UC3
+usecase "Marcar consulta" as UC4
+usecase "Confirmar horário da consulta" as UC5
+usecase "Atualizar dados do paciente" as UC6
+usecase "Mudar status consulta" as UC7
+usecase "Enviar mensagem automática de confirmação" as UC8
+usecase "Consultar prontuário eletrônico" as UC9
+usecase "Assinar prontuário" as UC10
+usecase "Registrar valores de consutlas" as UC11
+usecase "Excluir paciente" as UC12
+
+Secretaria -- UC1
+Secretaria -- UC2
+Secretaria -- UC4
+Secretaria -- UC6
+Secretaria -- UC7
+Secretaria -- UC9
+Secretaria -- UC11
+Secretaria -- UC12
+Dentista -- UC1
+Dentista -- UC2
+Dentista -- UC3
+Dentista -- UC5
+Dentista -- UC9
+Dentista -- UC10
+Paciente -- UC8
+Paciente -- UC10
+Paciente -- UC8
+Sistema -- UC8
+@enduml

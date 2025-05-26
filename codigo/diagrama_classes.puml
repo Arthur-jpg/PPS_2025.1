@@ -1,0 +1,77 @@
+@startuml
+
+class Usuarios {
+  +id: int
+  +nome: String
+  +email: String
+  +senha: String
+  +fazerLogin()
+}
+
+class Secretaria extends Usuarios {
+  +cadastrarPaciente()
+  +editarPaciente()
+  +excluirPaciente()
+  +marcarConsulta()
+  +alterarAgendaUnificada()
+  +mudarStatusConsulta()
+}
+
+class Dentista extends Usuarios {
+  +verAgendaIndividual()
+  +alterarAgendaIndividual()
+  +consultarProntuario()
+  +assinarProntuario()
+  +registrarValorConsulta()
+  +Agenda: Agenda
+}
+
+class Paciente extends Usuarios {
+  +Lista<consulta>: consultas
+  +Prontuario: prontuarios
+}
+
+class Consulta {
+  -id: String
+  +Date: dataHora
+  -Paciente: paciente
+  +Dentista: dentista
+  +boolean: status
+  +double: valor
+  +enviarMensagemConfirmacao()
+}
+
+class Prontuario {
+  +id: int
+  +Paciente: paciente
+  +List<String>: historico
+  +boolean: assinado
+  +imagens: list
+  +adicionarEntrada()
+}
+
+class Agenda {
+  +list<consulta>: consultas
+  +adicionarConsulta()
+  +removerConsulta()
+  +atualizarConsulta()
+  -listarConsultasPorData()
+  +listarConsultasPorDentista()
+}
+
+Usuarios <|-- Secretaria
+Usuarios <|-- Dentista
+Usuarios <|-- Paciente
+Dentista -- Agenda : Possui
+Paciente -- Consulta : Possui
+Paciente -- Prontuario : Possui
+Consulta -- Paciente
+Consulta -- Dentista
+Consulta -- Agenda
+Prontuario -- Paciente
+Agenda -- Consulta
+Secretaria -- Agenda : altera
+Dentista -- Agenda : altera
+Dentista -- Prontuario : acessa
+
+@enduml
