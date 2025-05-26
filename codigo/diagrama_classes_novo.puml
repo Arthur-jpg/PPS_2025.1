@@ -1,0 +1,101 @@
+@startuml
+
+class Usuario {
+  -id: int
+  -nome: string
+  -email: string
+  -senha: string
+  -perfil: PerfilAcesso
+}
+
+class Secretaria {
+  +cadastrarPaciente(p: Paciente)
+  +alterarPaciente(p: Paciente)
+  +agendarConsulta(c: Consulta)
+  +associarPagamento(c: Consulta, pag: Pagamento)
+}
+
+class Dentista {
+  +registrarProntuario(p: Paciente, pr: Prontuario)
+  +anexarDocumento(pr: Prontuario, doc: Documento)
+  +assinarProntuario(pr: Prontuario)
+}
+
+class Paciente {
+  -id: int
+  -nome: string
+  -dataNascimento: date
+  -telefone: string
+  -email: string
+  -prontuario: Prontuario
+}
+
+class Consulta {
+  -id: int
+  -dataHora: datetime
+  -status: StatusConsulta
+  -valorPrevisto: float
+  -formaPagamento: string
+  +enviarLembrete()
+}
+
+class Sala {
+  -id: int
+  -nome: string
+  -localizacao: string
+}
+
+class Prontuario {
+  -id: int
+  -dataCriacao: date
+  -informacoesClinicas: string
+  -assinaturaDigital: string
+  +anexarDocumento(doc: Documento)
+}
+
+class Documento {
+  -id: int
+  -tipo: string
+  -arquivo: string
+  -dataAnexo: date
+}
+
+class Lembrete {
+  -id: int
+  -mensagem: string
+  -dataEnvio: datetime
+  +enviarWhatsApp()
+}
+
+class Pagamento {
+  -id: int
+  -valor: float
+  -forma: string
+}
+
+enum StatusConsulta {
+  Confirmada
+  Realizada
+  Cancelada
+  Remarcada
+}
+
+enum PerfilAcesso {
+  Secretaria
+  Dentista
+}
+
+Usuario <|-- Secretaria
+Usuario <|-- Dentista
+Paciente "1" -- "1" Prontuario
+Paciente "1" -- "*" Consulta
+Dentista "1" -- "*" Consulta
+Dentista "1" -- "*" Prontuario : assina >
+Consulta "1" -- "1" Sala
+Consulta "1" -- "1" Lembrete
+Consulta "1" -- "1" Pagamento
+Consulta "1" -- "1" Paciente
+Consulta "1" -- "1" Dentista
+Prontuario "1" -- "*" Documento
+
+@enduml
