@@ -1,0 +1,6 @@
+@startuml
+start
+:Usuário acessa prontuário do paciente;
+:Sistema exibe informações clínicas e documentos;
+stop
+@enduml

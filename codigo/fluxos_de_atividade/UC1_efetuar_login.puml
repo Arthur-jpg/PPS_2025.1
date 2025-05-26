@@ -1,0 +1,12 @@
+@startuml
+start
+:Usuário acessa tela de login;
+:Informa usuário e senha;
+if (Credenciais válidas?) then (Sim)
+  :Acesso liberado conforme perfil;
+else (Não)
+  :Exibe mensagem de erro;
+  stop
+endif
+stop
+@enduml

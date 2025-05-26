@@ -1,0 +1,13 @@
+@startuml
+start
+:Secretária acessa opção "Marcar Consulta";
+:Informa dados do paciente, dentista e horário;
+if (Horário disponível?) then (Sim)
+  :Consulta agendada;
+  :Enviar mensagem de confirmação;
+else (Não)
+  :Exibe mensagem de horário indisponível;
+  :Solicita novo horário;
+endif
+stop
+@enduml

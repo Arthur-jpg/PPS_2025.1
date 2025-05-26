@@ -1,0 +1,8 @@
+@startuml
+start
+:Secretária acessa cadastro do paciente;
+:Altera informações necessárias;
+:Salva alterações;
+:Sistema atualiza dados;
+stop
+@enduml

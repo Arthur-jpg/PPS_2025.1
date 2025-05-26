@@ -1,0 +1,11 @@
+@startuml
+start
+:Sistema identifica consultas próximas;
+:Envia mensagem automática ao paciente;
+if (Mensagem entregue?) then (Sim)
+  :Paciente recebe confirmação;
+else (Não)
+  :Sistema registra falha e tenta novamente;
+endif
+stop
+@enduml

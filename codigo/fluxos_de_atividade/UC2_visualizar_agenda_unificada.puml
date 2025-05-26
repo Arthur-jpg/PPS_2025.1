@@ -1,0 +1,7 @@
+@startuml
+start
+:Usuário acessa agenda unificada;
+:Solicita visualização de todas as consultas;
+:Sistema exibe agenda com horários e dentistas;
+stop
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+start
+:Secretária acessa cadastro do paciente;
+:Solicita exclusão do paciente;
+:Sistema solicita confirmação;
+if (Paciente possui consultas futuras?) then (Sim)
+  :Sistema alerta sobre remanejamento;
+endif
+:Secretária confirma exclusão;
+:Sistema remove paciente e dados;
+stop
+@enduml
