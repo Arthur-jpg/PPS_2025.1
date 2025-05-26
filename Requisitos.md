@@ -30,7 +30,7 @@
 7. O código e a estrutura do sistema devem facilitar a manutenção e atualização.
 8. O sistema deve ser portátil, podendo ser instalado e utilizado em diferentes ambientes, caso necessário.
 
----### **Requisitos Funcionais (em linguagem natural)**
+### **Requisitos Funcionais (em linguagem natural)**
 
 1. A secretária deve ser capaz de cadastrar novos pacientes no sistema.
 2. Os usuários devem conseguir efetuar login para acessar suas funcionalidades.
