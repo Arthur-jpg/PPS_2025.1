@@ -1,8 +1,0 @@
-@startuml
-start
-:Dentista acessa agenda;
-:Seleciona consulta a confirmar;
-:Confirma horário da consulta;
-:Sistema registra confirmação;
-stop
-@enduml

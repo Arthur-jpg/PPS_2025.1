@@ -1,7 +1,0 @@
-@startuml
-start
-:Dentista acessa agenda individual;
-:Solicita visualização de suas consultas;
-:Sistema exibe agenda do dentista;
-stop
-@enduml

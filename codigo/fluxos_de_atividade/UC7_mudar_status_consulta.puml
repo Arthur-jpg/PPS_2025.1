@@ -1,8 +1,0 @@
-@startuml
-start
-:Secretária acessa lista de consultas;
-:Seleciona consulta desejada;
-:Altera status da consulta;
-:Sistema registra alteração;
-stop
-@enduml

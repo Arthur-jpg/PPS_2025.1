@@ -1,7 +1,0 @@
-@startuml
-start
-:Secretária acessa agendamento da consulta;
-:Informa valor previsto e forma de pagamento;
-:Sistema registra informações para controle interno;
-stop
-@enduml
