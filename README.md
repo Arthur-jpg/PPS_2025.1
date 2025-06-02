@@ -84,4 +84,12 @@ Este projeto está em fase de desenvolvimento como parte do projeto de Processo 
 
 ---
 
+## Figma
+- [figma](https://www.figma.com/design/SNCkb7MD8BJNXKJA1T2ByC/Untitled?m=auto&t=6qVQ58aOYNuDNswD-1)
+  
+- ---
+
+## Apresentação
+- [Slides]()
+
 *Desenvolvido para o curso de Processo e Produto de Software (PPS) - IBMEC Rio de Janeiro, 2025.*
