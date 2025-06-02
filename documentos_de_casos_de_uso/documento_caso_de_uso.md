@@ -302,3 +302,115 @@ Permite à secretária cadastrar novos pacientes no sistema, registrando informa
 
 **Pós-condições:**
 -   Novo paciente cadastrado no sistema e disponível para agendamento de consultas.
+
+---
+
+## UC14: Verificar disponibilidade
+
+**Atores:** Secretaria (indiretamente)
+
+**Descrição:**
+Permite ao sistema verificar automaticamente a disponibilidade de horários para agendamento de consultas, considerando os horários já ocupados pelos dentistas e salas.
+
+**Fluxo Principal:**
+1.  Durante o processo de marcação de consulta, o sistema recebe os parâmetros de data, horário e dentista desejados.
+2.  O sistema consulta a agenda do dentista selecionado.
+3.  O sistema verifica se não há conflitos de horário na data e horário informados.
+4.  O sistema retorna a confirmação de disponibilidade ou lista de conflitos.
+
+**Fluxos Alternativos:**
+-   Caso o horário não esteja disponível, o sistema pode sugerir horários alternativos próximos.
+-   Se o dentista não estiver disponível, o sistema pode sugerir outros profissionais.
+
+**Pré-condições:**
+-   O dentista deve estar cadastrado no sistema.
+-   A data e horário desejados devem ser informados.
+
+**Pós-condições:**
+-   Disponibilidade verificada e confirmada ou rejeitada.
+
+---
+
+## UC15: Selecionar sala
+
+**Atores:** Secretaria
+
+**Descrição:**
+Permite à secretária selecionar uma sala apropriada para a realização da consulta, com base na disponibilidade e características necessárias para o atendimento.
+
+**Fluxo Principal:**
+1.  Durante o processo de marcação de consulta, a secretária verifica salas disponíveis.
+2.  O sistema exibe a lista de salas livres no horário selecionado.
+3.  A secretária seleciona uma sala adequada para o atendimento.
+4.  O sistema registra a sala como ocupada para aquele horário.
+
+**Fluxos Alternativos:**
+-   Caso não exista sala disponível no horário desejado, o sistema informa a indisponibilidade.
+-   A secretária pode visualizar os recursos disponíveis em cada sala antes de selecionar.
+
+**Pré-condições:**
+-   Horário de consulta já definido.
+-   Dentista já selecionado para o atendimento.
+
+**Pós-condições:**
+-   Sala reservada para a consulta.
+
+---
+
+## UC16: Anexar documentos
+
+**Atores:** Secretaria, Dentista
+
+**Descrição:**
+Permite à secretária e aos dentistas anexar documentos digitais ao prontuário do paciente, como exames, radiografias, fotos clínicas e outros arquivos relevantes para o tratamento.
+
+**Fluxo Principal:**
+1.  O usuário acessa o prontuário do paciente.
+2.  Seleciona a opção de anexar documentos.
+3.  Escolhe o tipo de documento (radiografia, foto clínica, exame laboratorial, etc).
+4.  Seleciona o arquivo a ser anexado a partir do dispositivo.
+5.  Adiciona uma descrição para o documento.
+6.  O sistema valida o formato e tamanho do arquivo.
+7.  O sistema anexa o documento ao prontuário.
+
+**Fluxos Alternativos:**
+-   Caso o arquivo tenha formato inválido ou tamanho excessivo, o sistema exibe mensagem de erro.
+-   O usuário pode cancelar o anexo a qualquer momento.
+-   Possibilidade de visualizar, substituir ou excluir documentos já anexados.
+
+**Pré-condições:**
+-   O paciente deve estar cadastrado no sistema.
+-   Usuário deve ter permissão para acessar o prontuário.
+
+**Pós-condições:**
+-   Documento anexado ao prontuário eletrônico.
+
+---
+
+## UC17: Visualizar histórico
+
+**Atores:** Secretaria, Dentista
+
+**Descrição:**
+Permite à secretária e aos dentistas visualizar o histórico completo de atendimentos, procedimentos e evolução clínica do paciente, fornecendo uma visão cronológica dos tratamentos realizados.
+
+**Fluxo Principal:**
+1.  O usuário acessa o prontuário do paciente.
+2.  Seleciona a opção de visualizar histórico.
+3.  O sistema exibe todas as consultas anteriores em ordem cronológica.
+4.  O usuário pode filtrar por período, dentista ou tipo de procedimento.
+5.  O sistema apresenta detalhes de cada atendimento quando solicitado.
+
+**Fluxos Alternativos:**
+-   Caso o paciente não possua histórico de atendimentos, o sistema exibe mensagem informativa.
+-   O usuário pode exportar o histórico para formatos como PDF, se necessário.
+
+**Pré-condições:**
+-   O paciente deve estar cadastrado no sistema.
+-   Usuário deve ter permissão para acessar o prontuário.
+
+**Pós-condições:**
+-   Histórico de atendimentos visualizado.
+
+**Pós-condições:**
+-   Novo paciente cadastrado no sistema e disponível para agendamento de consultas.

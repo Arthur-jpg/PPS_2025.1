@@ -68,6 +68,10 @@ A documentação completa do projeto está disponível nos seguintes documentos:
 11. [UC11: Registrar Valores Consultas](./documentos_de_casos_de_uso/UC11_registrar_valores_consultas.md)
 12. [UC12: Excluir Paciente](./documentos_de_casos_de_uso/UC12_excluir_paciente.md)
 13. [UC13: Cadastrar Paciente](./documentos_de_casos_de_uso/UC13_cadastrar_paciente.md)
+14. [UC14: Verificar Disponibilidade](./documentos_de_casos_de_uso/UC14_verificar_disponibilidade.md)
+15. [UC15: Selecionar Sala](./documentos_de_casos_de_uso/UC15_selecionar_sala.md)
+16. [UC16: Anexar Documentos](./documentos_de_casos_de_uso/UC16_anexar_documentos.md)
+17. [UC17: Visualizar Histórico](./documentos_de_casos_de_uso/UC17_visualizar_historico.md)
 
 ## 🛠️ Tecnologias
 

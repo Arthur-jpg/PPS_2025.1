@@ -1,32 +1,26 @@
 @startuml diagrama_casos_de_uso
 
-' Configuração para proporcionar uma apresentação mais verticalizada na proporção 16:9
 skinparam packageStyle rectangle
 skinparam handwritten false
 skinparam shadowing false
 skinparam linetype ortho
 skinparam packageStyle folder
 skinparam usecaseBorderThickness 1
-' Use o comando abaixo para criar uma relação de aspecto próxima a 16:9
+
 skinparam Rankdir top to bottom
 left to right direction
 
-' Definição dos atores
 actor Secretaria as sec
 actor Dentista as dent
 actor Paciente as pac
 actor Sistema as sys
 
-' Pacote para casos de uso de acesso ao sistema
 package "Gerenciamento de Acesso" {
   usecase "UC1: Efetuar Login" as UC1
   usecase "Validar Credenciais" as valid_cred
   usecase "Definir Permissões de Acesso" as def_perm
 }
-
-' Uso de layout para garantir melhor distribuição vertical
 together {
-  ' Pacote para casos de uso relacionados à agenda
   package "Gerenciamento de Agenda" {
     together {
       usecase "UC2: Visualizar Agenda Unificada" as UC2
@@ -39,16 +33,15 @@ together {
     together {
       usecase "UC7: Mudar Status Consulta" as UC7
       usecase "UC8: Enviar Mensagem Automática de Confirmação" as UC8
-    }
+    }    
     together {
-      usecase "Verificar Disponibilidade" as verif_disp
-      usecase "Selecionar Sala" as sel_sala
+      usecase "UC14: Verificar Disponibilidade" as UC14
+      usecase "UC15: Selecionar Sala" as UC15
     }
   }
 }
 
 together {
-  ' Pacote para casos de uso relacionados a pacientes
   package "Gerenciamento de Pacientes" {
     together {
       usecase "UC6: Atualizar Dados Paciente" as UC6
@@ -62,21 +55,20 @@ together {
 }
 
 together {
-  ' Pacote para casos de uso relacionados a prontuários
+
   package "Gerenciamento de Prontuários" {
     together {
       usecase "UC9: Consultar Prontuário Eletrônico" as UC9
       usecase "UC10: Assinar Prontuário" as UC10
-    }
+    }    
     together {
       usecase "UC11: Registrar Valores Consultas" as UC11
-      usecase "Anexar Documentos" as anexar_doc
-      usecase "Visualizar Histórico" as vis_hist
+      usecase "UC16: Anexar Documentos" as UC16
+      usecase "UC17: Visualizar Histórico" as UC17
     }
   }
 }
 
-' Posicionamento dos atores para melhor organização vertical
 sec -[#blue]-> UC1
 sec -[#blue]-> UC2
 sec -[#blue]-> UC4
@@ -99,21 +91,19 @@ pac -[#red]-> UC8
 
 sys -[#gray]-> UC8
 
-' Relacionamentos de include (pontilhados)
 UC1 ...> valid_cred : <<include>>
 UC1 ...> def_perm : <<include>>
-UC4 ...> verif_disp : <<include>>
-UC4 ...> sel_sala : <<include>>
+UC4 ...> UC14 : <<include>>
+UC4 ...> UC15 : <<include>>
 UC4 ...> UC5 : <<include>>
 UC6 ...> valid_cpf : <<include>>
-UC9 ...> vis_hist : <<include>>
+UC9 ...> UC17 : <<include>>
 UC13 ...> valid_cpf : <<include>>
 
-' Relacionamentos de extend (pontilhados com cor diferente)
 UC7 .[#purple]> UC8 : <<extend>>
 UC10 .[#purple]> UC9 : <<extend>>
 UC11 .[#purple]> UC9 : <<extend>>
-anexar_doc .[#purple]> UC9 : <<extend>>
+UC16 .[#purple]> UC9 : <<extend>>
 
 
 @enduml

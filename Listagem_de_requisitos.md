@@ -17,7 +17,10 @@
 - Mudar status consulta
 - Marcar consulta
 - Registrar valores consultas
-- 
+- Verificar disponibilidade de horários
+- Selecionar sala para atendimento
+- Anexar documentos ao prontuário
+- Visualizar histórico de atendimentos
 
 ### Não funcionais
 
