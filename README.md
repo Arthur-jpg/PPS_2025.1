@@ -93,6 +93,6 @@ Este projeto está em fase de desenvolvimento como parte do projeto de Processo 
 - [Slides]()
 
 ## Documento .docx
-- [documento]()
+- [documento](https://docs.google.com/document/d/1LnPmfwE16U56nZQl8RTtoDsPQtf3AHQm0RsHCjxKYfU/edit?tab=t.0)
 
 *Desenvolvido para o curso de Processo e Produto de Software (PPS) - IBMEC Rio de Janeiro, 2025.*
