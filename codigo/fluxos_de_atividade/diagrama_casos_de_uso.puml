@@ -1,0 +1,152 @@
+@startuml diagrama_casos_de_uso
+
+' Configuração para proporcionar uma apresentação mais verticalizada na proporção 16:9
+skinparam packageStyle rectangle
+skinparam handwritten false
+skinparam shadowing false
+skinparam linetype ortho
+skinparam packageStyle folder
+skinparam usecaseBorderThickness 1
+' Use o comando abaixo para criar uma relação de aspecto próxima a 16:9
+skinparam Rankdir top to bottom
+left to right direction
+
+' Definição dos atores
+actor Secretaria as sec
+actor Dentista as dent
+actor Paciente as pac
+actor Sistema as sys
+
+' Pacote para casos de uso de acesso ao sistema
+package "Gerenciamento de Acesso" {
+  usecase "UC1: Efetuar Login" as UC1
+  usecase "Validar Credenciais" as valid_cred
+  usecase "Definir Permissões de Acesso" as def_perm
+}
+
+' Uso de layout para garantir melhor distribuição vertical
+together {
+  ' Pacote para casos de uso relacionados à agenda
+  package "Gerenciamento de Agenda" {
+    together {
+      usecase "UC2: Visualizar Agenda Unificada" as UC2
+      usecase "UC3: Visualizar Agenda Individual" as UC3
+    }
+    together {
+      usecase "UC4: Marcar Consulta" as UC4
+      usecase "UC5: Confirmar Horário Consulta" as UC5
+    }
+    together {
+      usecase "UC7: Mudar Status Consulta" as UC7
+      usecase "UC8: Enviar Mensagem Automática de Confirmação" as UC8
+    }
+    together {
+      usecase "Verificar Disponibilidade" as verif_disp
+      usecase "Selecionar Sala" as sel_sala
+    }
+  }
+}
+
+together {
+  ' Pacote para casos de uso relacionados a pacientes
+  package "Gerenciamento de Pacientes" {
+    together {
+      usecase "UC6: Atualizar Dados Paciente" as UC6
+      usecase "UC12: Excluir Paciente" as UC12
+    }
+    together {
+      usecase "Cadastrar Paciente" as cad_pac
+      usecase "Validar CPF" as valid_cpf
+    }
+  }
+}
+
+together {
+  ' Pacote para casos de uso relacionados a prontuários
+  package "Gerenciamento de Prontuários" {
+    together {
+      usecase "UC9: Consultar Prontuário Eletrônico" as UC9
+      usecase "UC10: Assinar Prontuário" as UC10
+    }
+    together {
+      usecase "UC11: Registrar Valores Consultas" as UC11
+      usecase "Anexar Documentos" as anexar_doc
+      usecase "Visualizar Histórico" as vis_hist
+    }
+  }
+}
+
+' Posicionamento dos atores para melhor organização vertical
+sec -[#blue]-> UC1
+sec -[#blue]-> UC2
+sec -[#blue]-> UC4
+sec -[#blue]-> UC5
+sec -[#blue]-> UC6
+sec -[#blue]-> UC7
+sec -[#blue]-> UC9
+sec -[#blue]-> UC12
+sec -[#blue]-> cad_pac
+
+dent -[#green]-> UC1
+dent -[#green]-> UC3
+dent -[#green]-> UC7
+dent -[#green]-> UC9
+dent -[#green]-> UC10
+dent -[#green]-> UC11
+
+pac -[#red]-> UC5
+pac -[#red]-> UC8
+
+sys -[#gray]-> UC8
+
+' Relacionamentos de include (pontilhados)
+UC1 ...> valid_cred : <<include>>
+UC1 ...> def_perm : <<include>>
+UC4 ...> verif_disp : <<include>>
+UC4 ...> sel_sala : <<include>>
+UC4 ...> UC5 : <<include>>
+UC6 ...> valid_cpf : <<include>>
+UC9 ...> vis_hist : <<include>>
+cad_pac ...> valid_cpf : <<include>>
+
+' Relacionamentos de extend (pontilhados com cor diferente)
+UC7 .[#purple]> UC8 : <<extend>>
+UC10 .[#purple]> UC9 : <<extend>>
+UC11 .[#purple]> UC9 : <<extend>>
+anexar_doc .[#purple]> UC9 : <<extend>>
+
+' Notas explicativas
+note bottom of UC1 #lightyellow
+  <b>O usuário deve estar cadastrado
+  para acessar o sistema</b>
+end note
+
+note bottom of UC4 #lightyellow
+  <b>Permite agendamento com
+  verificação de disponibilidade</b>
+end note
+
+note bottom of UC10 #lightyellow
+  <b>O dentista pode anexar
+  documentos e assinar prontuários</b>
+end note
+
+' Legenda
+legend right
+  <b>Legenda</b>
+  |= Tipo de Relação |= Descrição |
+  |<#black>------>  | Associação |
+  |<#black>....>    | <<include>> |
+  |<#purple>....>   | <<extend>> |
+endlegend
+
+' Ajuste para proporção 16:9
+scale 1.8
+
+' Configurações para melhorar a organização vertical
+skinparam wrapWidth 150
+skinparam roundCorner 10
+skinparam Padding 5
+skinparam BackgroundColor white
+
+@enduml
