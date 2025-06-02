@@ -1,0 +1,260 @@
+@startuml
+
+' Enum definitions
+enum PerfilAcesso {
+  SECRETARIA
+  DENTISTA
+  ADMINISTRADOR
+}
+
+enum StatusConsulta {
+  AGENDADA
+  CONFIRMADA
+  REALIZADA
+  CANCELADA
+  REMARCADA
+}
+
+enum TipoDocumento {
+  RADIOGRAFIA
+  FOTO_CLINICA
+  EXAME_LABORATORIAL
+  RECEITA
+  ATESTADO
+  DOCUMENTO_PESSOAL
+  OUTROS
+}
+
+enum TipoMensagem {
+  CONFIRMACAO_CONSULTA
+  LEMBRETE_CONSULTA
+  CANCELAMENTO
+  REMARCACAO
+}
+
+enum StatusMensagem {
+  AGUARDANDO_ENVIO
+  ENVIADA
+  FALHA_ENVIO
+  ENTREGUE
+  LIDA
+  RESPONDIDA
+}
+
+' Base classes
+abstract class Usuario {
+  -id: Long
+  -nome: String
+  -email: String
+  -senha: String
+  -perfil: PerfilAcesso
+  -telefone: String
+  -ativo: Boolean
+  -dataCadastro: LocalDateTime
+  -ultimoAcesso: LocalDateTime
+  +cadastrar(): Boolean
+  +alterar(): Boolean
+  +excluir(): Boolean
+  +fazerLogin(email: String, senha: String): Boolean
+  +fazerLogout(): Boolean
+  +alterarSenha(senhaAtual: String, novaSenha: String): Boolean
+}
+
+' User types
+class Secretaria extends Usuario {
+  -cargo: String
+  -turno: String
+  +visualizarAgendaUnificada(): List<Consulta>
+  +cadastrarPaciente(paciente: Paciente): Boolean
+  +editarPaciente(paciente: Paciente): Boolean
+  +excluirPaciente(paciente: Paciente): Boolean
+  +marcarConsulta(consulta: Consulta): Boolean
+  +alterarConsulta(consulta: Consulta): Boolean
+  +cancelarConsulta(consulta: Consulta): Boolean
+  +confirmarConsulta(consulta: Consulta): Boolean
+  +anexarDocumentoProntuario(prontuario: Prontuario, documento: Documento): Boolean
+  +visualizarProntuario(paciente: Paciente): Prontuario
+}
+
+class Dentista extends Usuario {
+  -cro: String
+  -especialidade: String
+  +visualizarAgendaIndividual(): List<Consulta>
+  +alterarAgendaIndividual(consulta: Consulta): Boolean
+  +consultarProntuario(paciente: Paciente): Prontuario
+  +editarProntuario(prontuario: Prontuario): Boolean
+  +anexarDocumentos(prontuario: Prontuario, documentos: List<Documento>): Boolean
+  +assinarProntuario(prontuario: Prontuario): Boolean
+  +registrarValorConsulta(consulta: Consulta, valor: Double): Boolean
+  +mudarStatusConsulta(consulta: Consulta, status: StatusConsulta): Boolean
+}
+
+' Main entities
+class Paciente {
+  -id: Long
+  -nome: String
+  -cpf: String
+  -dataNascimento: LocalDate
+  -genero: String
+  -telefone: String
+  -email: String
+  -endereco: Endereco
+  -convenio: String
+  -numeroConvenio: String
+  -observacoes: String
+  -dataUltimaConsulta: LocalDate
+  -dataCadastro: LocalDate
+  -ativo: Boolean
+  +cadastrar(): Boolean
+  +alterar(): Boolean
+  +excluir(): Boolean
+  +getHistoricoConsultas(): List<Consulta>
+  +getProntuario(): Prontuario
+}
+
+class Consulta {
+  -id: Long
+  -paciente: Paciente
+  -dentista: Dentista
+  -dataHora: LocalDateTime
+  -duracao: Integer
+  -status: StatusConsulta
+  -observacoes: String
+  -valorPrevisto: Double
+  +marcar(): Boolean
+  +cancelar(): Boolean
+  +remarcar(novaDataHora: LocalDateTime): Boolean
+  +confirmar(): Boolean
+  +registrarAtendimento(): Boolean
+  +alterarStatus(status: StatusConsulta): Boolean
+  +getDetalhes(): String
+}
+
+class Prontuario {
+  -id: Long
+  -paciente: Paciente
+  -dataCriacao: LocalDate
+  -ultimaAtualizacao: LocalDateTime
+  -assinado: Boolean
+  -assinaturaDigital: Assinatura
+  -entradas: List<EntradaProntuario>
+  -documentos: List<Documento>
+  +adicionarEntrada(entrada: EntradaProntuario): Boolean
+  +adicionarDocumento(documento: Documento): Boolean
+  +assinar(dentista: Dentista): Boolean
+  +verificarAssinatura(): Boolean
+  +getHistoricoCompleto(): List<EntradaProntuario>
+}
+
+class EntradaProntuario {
+  -id: Long
+  -data: LocalDateTime
+  -dentista: Dentista
+  -descricao: String
+  -procedimentosRealizados: List<String>
+  -medicacaoReceitada: String
+  -observacoes: String
+  +adicionar(): Boolean
+  +editar(): Boolean
+}
+
+class Documento {
+  -id: Long
+  -nome: String
+  -tipo: TipoDocumento
+  -arquivo: String
+  -dataUpload: LocalDateTime
+  -tamanho: Long
+  -formato: String
+  -usuario: Usuario
+  -paciente: Paciente
+  +upload(): Boolean
+  +download(): Boolean
+  +visualizar(): Boolean
+  +excluir(): Boolean
+}
+
+class Agenda {
+  -id: Long
+  -dentista: Dentista
+  -dataInicio: LocalDate
+  -dataFim: LocalDate
+  +getConsultasDiarias(data: LocalDate): List<Consulta>
+  +getConsultasSemanais(semana: Integer): List<Consulta>
+  +getConsultasMensais(mes: Integer): List<Consulta>
+  +verificarDisponibilidade(dataHora: LocalDateTime): Boolean
+  +adicionarConsulta(consulta: Consulta): Boolean
+  +removerConsulta(consulta: Consulta): Boolean
+}
+
+class Assinatura {
+  -id: Long
+  -dentista: Dentista
+  -prontuario: Prontuario
+  -data: LocalDateTime
+  -hash: String
+  -dispositivo: String
+  -valida: Boolean
+  +assinar(): Boolean
+  +verificar(): Boolean
+  +invalidar(): Boolean
+}
+
+class Endereco {
+  -id: Long
+  -logradouro: String
+  -numero: String
+  -complemento: String
+  -bairro: String
+  -cidade: String
+  -estado: String
+  -cep: String
+  -principal: Boolean
+  +formatar(): String
+}
+
+class MensagemAutomatica {
+  -id: Long
+  -consulta: Consulta
+  -paciente: Paciente
+  -tipo: TipoMensagem
+  -conteudo: String
+  -dataHoraEnvio: LocalDateTime
+  -dataHoraAgendamento: LocalDateTime
+  -status: StatusMensagem
+  -canal: String
+  -respostaPaciente: String
+  -dataHoraResposta: LocalDateTime
+  +enviar(): Boolean
+  +verificarStatus(): StatusMensagem
+  +registrarResposta(resposta: String): Boolean
+  +gerarConteudo(): String
+  +reenviar(): Boolean
+}
+
+
+' Relationships
+
+Paciente "1" -- "1" Prontuario : possui >
+Paciente "1" -- "*" Consulta : agendado em >
+Paciente "1" -- "1..*" Endereco : possui >
+Paciente "1" -- "*" Documento : possui >
+Paciente "1" -- "*" MensagemAutomatica : recebe >
+
+Dentista "1" -- "1" Agenda : possui >
+Dentista "1" -- "*" Consulta : atende >
+Dentista "1" -- "*" EntradaProntuario : registra >
+Dentista "1" -- "*" Assinatura : realiza >
+
+Consulta "*" -- "1" Agenda : registrada em >
+Consulta "1" -- "*" MensagemAutomatica : gera >
+
+Prontuario "1" -- "*" EntradaProntuario : contém >
+Prontuario "1" -- "*" Documento : inclui >
+Prontuario "1" -- "0..1" Assinatura : validado por >
+
+Usuario "1" -- "*" Documento : anexa >
+Secretaria "*" -- "*" Agenda : gerencia >
+
+
+@enduml

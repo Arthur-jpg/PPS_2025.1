@@ -55,7 +55,7 @@ together {
       usecase "UC12: Excluir Paciente" as UC12
     }
     together {
-      usecase "Cadastrar Paciente" as cad_pac
+      usecase "UC13: Cadastrar Paciente" as UC13
       usecase "Validar CPF" as valid_cpf
     }
   }
@@ -85,7 +85,7 @@ sec -[#blue]-> UC6
 sec -[#blue]-> UC7
 sec -[#blue]-> UC9
 sec -[#blue]-> UC12
-sec -[#blue]-> cad_pac
+sec -[#blue]-> UC13
 
 dent -[#green]-> UC1
 dent -[#green]-> UC3
@@ -107,7 +107,7 @@ UC4 ...> sel_sala : <<include>>
 UC4 ...> UC5 : <<include>>
 UC6 ...> valid_cpf : <<include>>
 UC9 ...> vis_hist : <<include>>
-cad_pac ...> valid_cpf : <<include>>
+UC13 ...> valid_cpf : <<include>>
 
 ' Relacionamentos de extend (pontilhados com cor diferente)
 UC7 .[#purple]> UC8 : <<extend>>
@@ -115,38 +115,5 @@ UC10 .[#purple]> UC9 : <<extend>>
 UC11 .[#purple]> UC9 : <<extend>>
 anexar_doc .[#purple]> UC9 : <<extend>>
 
-' Notas explicativas
-note bottom of UC1 #lightyellow
-  <b>O usuário deve estar cadastrado
-  para acessar o sistema</b>
-end note
-
-note bottom of UC4 #lightyellow
-  <b>Permite agendamento com
-  verificação de disponibilidade</b>
-end note
-
-note bottom of UC10 #lightyellow
-  <b>O dentista pode anexar
-  documentos e assinar prontuários</b>
-end note
-
-' Legenda
-legend right
-  <b>Legenda</b>
-  |= Tipo de Relação |= Descrição |
-  |<#black>------>  | Associação |
-  |<#black>....>    | <<include>> |
-  |<#purple>....>   | <<extend>> |
-endlegend
-
-' Ajuste para proporção 16:9
-scale 1.8
-
-' Configurações para melhorar a organização vertical
-skinparam wrapWidth 150
-skinparam roundCorner 10
-skinparam Padding 5
-skinparam BackgroundColor white
 
 @enduml

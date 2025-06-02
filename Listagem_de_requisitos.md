@@ -2,7 +2,7 @@
 
 - Cadastrar os paciente (pela secretária)
 - Efetuar login
-- Cadastrar usuário
+- Cadastrar Paciente
 - Marcar consulta
 - Verificar agenda unificada
 - verificar agenda individual

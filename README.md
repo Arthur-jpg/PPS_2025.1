@@ -67,6 +67,7 @@ A documentação completa do projeto está disponível nos seguintes documentos:
 10. [UC10: Assinar Prontuário](./documentos_de_casos_de_uso/UC10_assinar_prontuario.md)
 11. [UC11: Registrar Valores Consultas](./documentos_de_casos_de_uso/UC11_registrar_valores_consultas.md)
 12. [UC12: Excluir Paciente](./documentos_de_casos_de_uso/UC12_excluir_paciente.md)
+13. [UC13: Cadastrar Paciente](./documentos_de_casos_de_uso/UC13_cadastrar_paciente.md)
 
 ## 🛠️ Tecnologias
 
