@@ -95,7 +95,7 @@ Este projeto está em fase de desenvolvimento como parte do projeto de Processo 
 - ---
 
 ## Apresentação
-- [Slides]()
+- [Slides](https://www.canva.com/design/DAGpKofbyr8/ToQDEn7mI9bzuL0qrTcbZw/edit?utm_content=DAGpKofbyr8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Documento .docx
 - [documento](https://docs.google.com/document/d/1LnPmfwE16U56nZQl8RTtoDsPQtf3AHQm0RsHCjxKYfU/edit?tab=t.0)
