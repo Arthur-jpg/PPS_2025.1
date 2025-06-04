@@ -18,7 +18,7 @@ actor Sistema as sys
 package "Gerenciamento de Acesso" {
   usecase "UC1: Efetuar Login" as UC1
   usecase "Validar Credenciais" as valid_cred
-  usecase "Definir Permissões de Acesso" as def_perm
+  usecase "Carregar Permissões de Acesso" as def_perm
 }
 together {
   package "Gerenciamento de Agenda" {
