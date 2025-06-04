@@ -28,7 +28,6 @@ together {
     }
     together {
       usecase "UC4: Marcar Consulta" as UC4
-      usecase "UC5: Confirmar Horário Consulta" as UC5
     }
     together {
       usecase "UC7: Mudar Status Consulta" as UC7
@@ -72,7 +71,6 @@ together {
 sec -[#blue]-> UC1
 sec -[#blue]-> UC2
 sec -[#blue]-> UC4
-sec -[#blue]-> UC5
 sec -[#blue]-> UC6
 sec -[#blue]-> UC7
 sec -[#blue]-> UC9
@@ -86,7 +84,6 @@ dent -[#green]-> UC9
 dent -[#green]-> UC10
 dent -[#green]-> UC11
 
-pac -[#red]-> UC5
 pac -[#red]-> UC8
 
 sys -[#gray]-> UC8
@@ -95,7 +92,6 @@ UC1 ...> valid_cred : <<include>>
 UC1 ...> def_perm : <<include>>
 UC4 ...> UC14 : <<include>>
 UC4 ...> UC15 : <<include>>
-UC4 ...> UC5 : <<include>>
 UC6 ...> valid_cpf : <<include>>
 UC9 ...> UC17 : <<include>>
 UC13 ...> valid_cpf : <<include>>

@@ -9,7 +9,7 @@ Permite à secretária cadastrar novos pacientes no sistema, registrando informa
 1. A secretária acessa a opção de cadastro de paciente.
 2. Insere os dados pessoais do paciente (nome, CPF, data de nascimento, gênero).
 3. Insere informações de contato (telefone, email, endereço).
-4. Registra informações complementares (convênio, número do convênio, observações).
+4. Registra informações complementares.
 5. O sistema valida o CPF do paciente.
 6. O sistema salva o cadastro do novo paciente.
 
